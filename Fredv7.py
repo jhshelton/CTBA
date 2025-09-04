@@ -1,19 +1,14 @@
 '''
-The problem statement : 
-    * 
-    *
+Group Numer: 13
+Names: Jackson, Pranav, Yixuan, Justin
 
-The objective : 
-    *
-    *
+The question: Which states have historically been proactive about raising their minimum wage?
 
-Pseudocode : 
-    *
-    *
+Data choices: We used the state minimum wages of Texas, Virginia, Illinois, California, and New York adjusted down by the federal minimum wage
 
-Result :
-    *
-    *
+Takeaways: From 1968 to 2000, most states did not raise their minimum wage above the federal rate proactively.
+Beginning in 2000, a few states raised their rates marginally above the federal rate but were brought closer to the federal rate when it was raised in 2007-2009.
+Post 2009, the federal rate stagnated and most states began to raise their rates well above the federal rate, but Texas has notably never raised their minimum wage above the federal rate potentially indicating strong social or political opposition.
 
 New libraries used :
     *
@@ -83,10 +78,10 @@ for count,i in enumerate(series_identifiers) :
         df['date'] = pd.to_datetime(df['date'],errors='coerce')
         df = pd.merge(df_base, df, on = 'date', how = 'left' )
         df.fillna(0, inplace = True)
-        print(df)
         df['value_y'] = df['value_y']-df_base['value']
         df['value_y'][df['value_y']<0] = 0  # keep only values above federal
        
+        
         plt.plot(df['date'], df['value_y'], linestyle='-',color = line_colors[count],label=state_labels[count])
             
         
@@ -107,7 +102,6 @@ plt.title(f"State-Wise Minimum Wage Rates of select states above the federal min
 plt.xlabel("Year")
 plt.ylabel("Minimum Wage (USD)")
 plt.grid(True)
-
 plt.legend()
 plt.savefig(f"assets/Wage_graph.png")
 
@@ -119,8 +113,10 @@ app.title = 'State Minimum Wages'
 
 app.layout = html.Div([
     html.H1('Analysis of State-wise Minimum wage trends'),
-    html.P('Placeholder', style={'color':'#000000','fontSize':'20px','backgroundColor':'#ffffff'}),
-    html.Img(src=f'assets/Wage_graph.png')
+    html.P(['This graph shows state minimum wages over the federal minimum since 1968. The goal is to see which states have been proactive about raising their minimum wage over time.'], style={'color':'#000000','fontSize':'20px','backgroundColor':'#ffffff'}),
+    html.Img(src=f'assets/Wage_graph.png'),
+    html.P('For most of the history of the minimum wage, states defaulted to the federal rate. States did not begin proactively raising their minimum wage until the 2000s with California being the first to act. The state minimums increasingly outpaced the federal minimum towards the end of the graph as the federal rate has not been raised since 2009. New York and California were the highest, potentially reflecting higher costs of living or a stronger labor presence politically. The only state to not see an increase is Texas which in fact has never raised their minimum wage above the federal rate despite the stagnation of the federal rate and increased costs of living. This potentially indicates some political resistance to the raising of the minimum wage or the minimum wage itself.')
+    
 ])
 
 

@@ -109,8 +109,6 @@ plt.ylabel("Minimum Wage (USD)")
 plt.grid(True)
 
 plt.legend()
-#plt.show()
-timestamp = datetime.now().strftime("%Y%m%d_%H%M%S") ## FROM GPT
 plt.savefig(f"assets/Wage_graph.png")
 
 

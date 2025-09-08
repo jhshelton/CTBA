@@ -12,7 +12,8 @@ app.layout = html.Div([
         children = [
             dbc.NavLink('Home', href = '/', active = 'exact'),
             dbc.NavLink('page 1', href = '/page1', active = 'exact'),
-            dbc.NavLink('page 2', href = '/page2', active = 'exact')
+            dbc.NavLink('page 2', href = '/page2', active = 'exact'),
+            dbc.NavLink('page 3', href ='/page3', active = 'exact')
             
         ],
         brand = 'Multi-Page App'

@@ -36,3 +36,92 @@ a:hover{
     background-color: #65ab6e;
     
 }
+/* page 1 styles for blocking elements */
+.page1-grid{
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    gap: 12px;
+
+}
+
+.row-2{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.block{
+    border: 2px dashed #cbd5e1;
+    border-radius: 8px;
+    background-color: #f5f7Fa;
+    color: #334155;
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.block-top{
+    min-height: 150px;
+
+}
+
+.block-footer{
+    min-height: 80px;
+}
+
+
+@media (max-width: 768px){
+    .row-2{
+        grid-template-columns: 1fr;
+    }
+}
+/* page 2 blocking and cat-facts styles*/
+.page2-wrap{
+    max-width: 840px;
+    margin: 0 auto;
+    padding: 16px;
+}
+
+.page-title{
+    font-size: 28px;
+    color: #1f2937;
+    margin-top: 6px;
+}
+
+.page-subtitle{
+    color: #475569;
+    margin-top: 15px;
+}
+
+/* cat fact id styling --- ids are style with # before id instead of decimal point*/
+
+#btn-cat{
+    display: inline-block;
+    font-size: 18px;
+    padding: 10px 18px;
+    border: 2px solid #1f2937;
+    border-radius: 8px;
+    background-color: #0ea5e9;
+    color: white;
+}
+
+#btn-cat:hover{
+    background-color: #1b4355;
+
+}
+
+#cat-fact{
+    display: block;
+    margin-top: 14px;
+    padding: 14px 16px;
+    background-color: white;
+    color: #0f172a;
+    font-size: 18px;
+    line-height: 1.5;
+    border: 2px solid #1f2937;
+    border-radius: 8px;
+    min-height: 72px
+}

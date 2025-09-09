@@ -14,8 +14,8 @@ import plotly.graph_objects as go
 
 url = 'https://api.stlouisfed.org/fred/series/observations'
 fred_api_key = '1d90de899e9698a2924f22d85c093fe6'
-series_identifiers = ['USMINE', 'USCONS', 'MANEMP', 'USTPU','USINFO', 'USFIRE', 'USPBS', 'USEHS', 'USLAH', 'USSERV', 'USGOVT']
-series_labels = ['Mining and Logging', 'Construction', 'Manufacturing', 'Trade Transportation and Utilities', 'Information', 'Financial Activities', 'Professional and Business Services', 'Education and Health Services', 'Leisure and Hospitality', 'Other Services', 'Government']
+series_identifiers = ['CES1000000008', 'CES2000000008', 'CES3000000008', 'CES4000000008','CES5000000008', 'CES5500000008', 'CES6000000008', 'CES6500000008', 'CES7000000008', 'CES8000000008']
+series_labels = ['Mining and Logging', 'Construction', 'Manufacturing', 'Trade Transportation and Utilities', 'Information', 'Financial Activities', 'Professional and Business Services', 'Education and Health Services', 'Leisure and Hospitality', 'Other Services']
 
 df = pd.DataFrame(columns = ['realtime_start', 'realtime_end', 'date', 'value', 'id'])
 
@@ -39,7 +39,7 @@ for i in range(len(series_identifiers)):
         df = pd.concat(frame)
 
 params = {
-    'series_id': 'JHGDPBRINDX',
+    'series_id': 'CPIAUCSL',
     'api_key':fred_api_key,
     'file_type': 'json'
 }
@@ -76,7 +76,7 @@ GDP_Toggle = dcc.Checklist(
 )
 
 date_control = dcc.DatePickerRange(id = 'daterange',
-                                   start_date = datetime.datetime(year = 1960, month = 1, day = 1),
+                                   start_date = datetime.datetime(year = 1968, month = 1, day = 1),
                                    end_date = datetime.date.today(),
                                    min_date_allowed = min(df['date']),
                                    max_date_allowed = datetime.date.today())
@@ -88,7 +88,7 @@ app.layout = html.Div([
     date_control,
     GDP_Toggle,
     html.Div('toggle test'),
-   
+    html.Div(id = 'test')
     
  
     
@@ -121,16 +121,17 @@ def update(industries, start, end, toggle):
             secondary_y= False,
             )
         fig.add_trace(
-        go.Scatter(x = filtered_dfrecess['date'], y = filtered_dfrecess['value'], name = 'GDP Recession Indicator', mode = 'lines'),
+        go.Scatter(x = filtered_dfrecess['date'], y = filtered_dfrecess['value'], name = 'Consumer Price Index', mode = 'lines'),
         secondary_y= True,
         )
-        fig.update_layout(xaxis_title = 'Year', yaxis_title = 'Employed Persons in Thousands')
-        fig.update_yaxes(title_text = 'GDP Recession Indicator(%)', secondary_y = True)
+        
+        fig.update_layout(xaxis_title = 'Year', yaxis_title = 'Average Hourly Wage')
+        fig.update_yaxes(title_text = 'CPI', secondary_y = True)
         fig.update_yaxes(range = [0, None], secondary_y= False)
     else:
         fig = px.line(filtered_df, x = 'date', y= 'value', color = 'id',
                         labels = {
-                            'value': 'Employed Persons in Thousands',
+                            'value': 'Average Hourly Wage',
                             'date':'Year',
                             'id': 'Industry'
                         })
